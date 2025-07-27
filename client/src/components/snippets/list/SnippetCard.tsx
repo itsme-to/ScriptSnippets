@@ -126,29 +126,6 @@ export const SnippetCard: React.FC<SnippetCardProps> = ({
           cursor-pointer hover:bg-light-hover dark:hover:bg-dark-hover transition-colors relative group`}
         onClick={() => {if(!isRecycleView) onOpen(snippet)}}
       >
-        {(snippet.is_public === 1 || snippet.updated_at) && (
-          <div className="bg-light-hover/50 dark:bg-dark-hover/50 px-3 py-1 text-xs flex items-center justify-between">
-            {snippet.is_public === 1 && (
-              <div className="flex items-center gap-1 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 px-1.5 py-0.5 rounded">
-                <Globe size={12} />
-                <span>Public</span>
-              </div>
-            )}
-            {isPublicView && (snippet.share_count || 0) > 0 && (
-              <div className="flex items-center gap-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 px-1.5 py-0.5 rounded ml-2">
-                <Users size={12} />
-                <span>Shared</span>
-              </div>
-            )}
-            <div className="flex items-center gap-1 text-light-text-secondary dark:text-dark-text-secondary ml-auto">
-              <Clock size={12} />
-              {
-               !isRecycleView ? <span>{getRelativeUpdateTime(snippet.updated_at)} ago</span> : <span>{getRelativeUpdateTime(snippet.expiry_date || '')} left</span>
-              } 
-            </div>
-          </div>
-        )}
-
         <div className="p-4 pt-2">
           <div className="flex justify-between items-start gap-4 mb-3">
             <div className="min-w-0 flex-1">
@@ -158,9 +135,11 @@ export const SnippetCard: React.FC<SnippetCardProps> = ({
               </h3>
 
               <div className="flex flex-wrap items-center gap-3 text-sm">
-                <div className="flex items-center gap-1 text-light-text-secondary dark:text-dark-text-secondary">
-                  <FileCode size={14} className="text-light-text-secondary dark:text-dark-text-secondary" />
-                  <span>{getUniqueLanguages(snippet.fragments)}</span>
+                <div className="flex items-center gap-1 text-light-text-secondary dark:text-dark-text-secondary ml-auto">
+                  <Clock size={12} />
+                  {
+                  !isRecycleView ? <span>{getRelativeUpdateTime(snippet.updated_at)} ago</span> : <span>{getRelativeUpdateTime(snippet.expiry_date || '')} left</span>
+                  } 
                 </div>
 
                 {snippet.username && isPublicView && (
