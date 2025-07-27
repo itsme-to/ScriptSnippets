@@ -152,10 +152,12 @@ const BaseSnippetStorage: React.FC<BaseSnippetStorageProps> = ({
 
   return (
     <div className="min-h-screen bg-light-bg dark:bg-dark-bg text-light-text dark:text-dark-text p-8">
-      <div className="flex justify-between items-start mb-4">
-        <StorageHeader isPublicView={isPublicView} />
-        {headerRight}
-      </div>
+      { isAuthenticated && (
+        <div className="flex justify-between items-start mb-4">
+          <StorageHeader isPublicView={isPublicView} />
+          {headerRight}
+        </div>
+      )}
 
       <SearchAndFilter
         searchTerm={searchTerm}
