@@ -1,10 +1,10 @@
 export const ROUTES = {
-  HOME: '/',
+  HOME: '/private',
   SHARED_SNIPPET: '/s/:shareId',
   SNIPPET: '/snippets/:snippetId',
   LOGIN: '/login',
   REGISTER: '/register',
-  PUBLIC_SNIPPETS: '/public/snippets',
+  PUBLIC_SNIPPETS: '/',
   AUTH_CALLBACK: '/auth/callback',
   EMBED: '/embed/:shareId',
   RECYCLE: '/recycle/snippets',
