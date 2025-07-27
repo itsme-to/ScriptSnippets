@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Clock, Users, FileCode, ChevronLeft, ChevronRight, Globe } from 'lucide-react';
+import { Clock, Users, FileCode, ChevronLeft, ChevronRight } from 'lucide-react';
 import SnippetCardMenu from './SnippetCardMenu';
 import SnippetRecycleCardMenu from './SnippetRecycleCardMenu';
 import { ConfirmationModal } from '../../common/modals/ConfirmationModal';
@@ -8,7 +8,6 @@ import CategoryList from '../../categories/CategoryList';
 import { PreviewCodeBlock } from '../../editor/PreviewCodeBlock';
 import ReactMarkdown from 'react-markdown';
 import { formatDistanceToNow } from 'date-fns';
-import { getUniqueLanguages } from '../../../utils/language/languageUtils';
 
 interface SnippetCardProps {
   snippet: Snippet;
