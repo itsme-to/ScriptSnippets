@@ -134,7 +134,7 @@ export const SnippetCard: React.FC<SnippetCardProps> = ({
               </h3>
 
               <div className="flex flex-wrap items-center gap-3 text-sm">
-                <div className="flex items-center gap-1 text-light-text-secondary dark:text-dark-text-secondary ml-auto">
+                <div className="flex items-center gap-1 text-light-text-secondary dark:text-dark-text-secondary">
                   <Clock size={12} />
                   {
                   !isRecycleView ? <span>{getRelativeUpdateTime(snippet.updated_at)} ago</span> : <span>{getRelativeUpdateTime(snippet.expiry_date || '')} left</span>
