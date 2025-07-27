@@ -35,9 +35,6 @@ export interface SearchAndFilterProps {
 export const SearchAndFilter: React.FC<SearchAndFilterProps> = ({ 
   searchTerm, 
   setSearchTerm, 
-  selectedLanguage, 
-  setSelectedLanguage, 
-  languages, 
   sortOrder,
   setSortOrder,
   viewMode,
@@ -60,23 +57,6 @@ export const SearchAndFilter: React.FC<SearchAndFilterProps> = ({
         existingCategories={allCategories}
         selectedCategories={selectedCategories}
       />
-      
-      <div className="relative">
-        <select
-          className="appearance-none bg-light-surface dark:bg-dark-surface text-light-text dark:text-dark-text rounded-lg py-2 px-4 pr-10 focus:outline-none focus:ring-2 focus:ring-light-primary dark:focus:ring-dark-primary"
-          value={selectedLanguage}
-          onChange={(e) => setSelectedLanguage(e.target.value)}
-        >
-          <option value="">All Languages</option>
-          {languages.map(lang => (
-            <option key={lang} value={lang}>{lang}</option>
-          ))}
-        </select>
-        <ChevronDown 
-          className="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 text-light-text-secondary dark:text-dark-text-secondary" 
-          size={20} 
-        />
-      </div>
 
       <div className="relative">
         <select
