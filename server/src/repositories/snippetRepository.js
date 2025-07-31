@@ -215,6 +215,7 @@ class SnippetRepository {
 
   #processSnippet(snippet) {
     if (!snippet) return null;
+    console.log('Processing snippet:', snippet);
 
     const fragments = this.selectFragmentsStmt.all(snippet.id);
     
