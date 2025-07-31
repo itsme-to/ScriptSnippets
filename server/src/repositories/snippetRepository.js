@@ -34,6 +34,7 @@ class SnippetRepository {
           s.user_id,
           s.is_public,
           COALESCE(s.display_username, u.username) AS username,
+          s.display_username,
           GROUP_CONCAT(DISTINCT c.name) as categories,
           (SELECT COUNT(*) FROM shared_snippets WHERE snippet_id = s.id) as share_count
         FROM snippets s
@@ -53,6 +54,7 @@ class SnippetRepository {
           s.user_id,
           s.is_public,
           COALESCE(s.display_username, u.username) AS username,
+          s.display_username,
           GROUP_CONCAT(DISTINCT c.name) as categories,
           (SELECT COUNT(*) FROM shared_snippets WHERE snippet_id = s.id) as share_count
         FROM snippets s
@@ -135,6 +137,7 @@ class SnippetRepository {
           s.user_id,
           s.is_public,
           COALESCE(s.display_username, u.username) AS username,
+          s.display_username,
           GROUP_CONCAT(DISTINCT c.name) as categories,
           (SELECT COUNT(*) FROM shared_snippets WHERE snippet_id = s.id) as share_count
         FROM snippets s
@@ -159,6 +162,7 @@ class SnippetRepository {
           s.user_id,
           s.is_public,
           COALESCE(s.display_username, u.username) AS username,
+          s.display_username,
           GROUP_CONCAT(DISTINCT c.name) as categories,
           (SELECT COUNT(*) FROM shared_snippets WHERE snippet_id = s.id) as share_count
         FROM snippets s
@@ -177,6 +181,7 @@ class SnippetRepository {
           s.user_id,
           s.is_public,
           COALESCE(s.display_username, u.username) AS username,
+          s.display_username,
           GROUP_CONCAT(DISTINCT c.name) as categories,
           (SELECT COUNT(*) FROM shared_snippets WHERE snippet_id = s.id) as share_count
         FROM snippets s
