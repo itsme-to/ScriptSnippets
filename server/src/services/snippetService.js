@@ -112,6 +112,7 @@ class SnippetService {
   async updateSnippet(id, snippetData, userId) {
     try {
       Logger.debug('Service: Updating snippet:', id, 'for user:', userId);
+      console.log('Service: Snippet data:', snippetData);
       const result = await snippetRepository.update(id, {
         ...snippetData,
         isPublic: snippetData.is_public || 0
