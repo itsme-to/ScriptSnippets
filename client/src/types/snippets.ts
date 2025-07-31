@@ -17,6 +17,7 @@ export interface Snippet {
   share_count?: number;
   is_public: number;
   username?: string;
+  display_username?: string
 }
 
 export interface ShareSettings {

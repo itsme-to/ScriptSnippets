@@ -33,7 +33,7 @@ class SnippetRepository {
           datetime(s.updated_at) || 'Z' as updated_at,
           s.user_id,
           s.is_public,
-          u.username,
+          COALESCE(s.display_username, u.username) AS username,
           GROUP_CONCAT(DISTINCT c.name) as categories,
           (SELECT COUNT(*) FROM shared_snippets WHERE snippet_id = s.id) as share_count
         FROM snippets s
@@ -52,7 +52,7 @@ class SnippetRepository {
           datetime(s.updated_at) || 'Z' as updated_at,
           s.user_id,
           s.is_public,
-          u.username,
+          COALESCE(s.display_username, u.username) AS username,
           GROUP_CONCAT(DISTINCT c.name) as categories,
           (SELECT COUNT(*) FROM shared_snippets WHERE snippet_id = s.id) as share_count
         FROM snippets s
@@ -70,7 +70,8 @@ class SnippetRepository {
           updated_at,
           expiry_date,
           user_id,
-          is_public
+          is_public,
+          display_username
         ) VALUES (?, ?, datetime('now', 'utc'),NULL, ?, ?)
       `);
 
@@ -93,7 +94,8 @@ class SnippetRepository {
         SET title = ?, 
             description = ?,
             updated_at = datetime('now', 'utc'),
-            is_public = ?
+            is_public = ?,
+            display_username = ?
         WHERE id = ? AND user_id = ?
       `);
 
@@ -132,7 +134,7 @@ class SnippetRepository {
           datetime(s.expiry_date) || 'Z' as expiry_date,
           s.user_id,
           s.is_public,
-          u.username,
+          COALESCE(s.display_username, u.username) AS username,
           GROUP_CONCAT(DISTINCT c.name) as categories,
           (SELECT COUNT(*) FROM shared_snippets WHERE snippet_id = s.id) as share_count
         FROM snippets s
@@ -156,7 +158,7 @@ class SnippetRepository {
           datetime(s.updated_at) || 'Z' as updated_at,
           s.user_id,
           s.is_public,
-          u.username,
+          COALESCE(s.display_username, u.username) AS username,
           GROUP_CONCAT(DISTINCT c.name) as categories,
           (SELECT COUNT(*) FROM shared_snippets WHERE snippet_id = s.id) as share_count
         FROM snippets s
@@ -174,7 +176,7 @@ class SnippetRepository {
           datetime(s.updated_at) || 'Z' as updated_at,
           s.user_id,
           s.is_public,
-          u.username,
+          COALESCE(s.display_username, u.username) AS username,
           GROUP_CONCAT(DISTINCT c.name) as categories,
           (SELECT COUNT(*) FROM shared_snippets WHERE snippet_id = s.id) as share_count
         FROM snippets s

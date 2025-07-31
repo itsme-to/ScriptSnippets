@@ -36,6 +36,7 @@ const EditSnippetModal: React.FC<EditSnippetModalProps> = ({
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isPublic, setIsPublic] = useState(snippetToEdit?.is_public || false);
   const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
+  const [displayUsername, setDisplayUsername] = useState('');
 
   const resetForm = () => {
     setTitle('');
@@ -60,6 +61,7 @@ const EditSnippetModal: React.FC<EditSnippetModalProps> = ({
         setFragments(JSON.parse(JSON.stringify(snippetToEdit.fragments || [])));
         setCategories(snippetToEdit.categories || []);
         setIsPublic(snippetToEdit.is_public || false);
+        setDisplayUsername(snippetToEdit?.display_username || '');
       } else {
         resetForm();
       }
@@ -153,7 +155,8 @@ const EditSnippetModal: React.FC<EditSnippetModalProps> = ({
       description: description,
       fragments: fragments.map((f, idx) => ({ ...f, position: idx })),
       categories: categories,
-      is_public: isPublic ? 1 : 0
+      is_public: isPublic ? 1 : 0,
+      display_username: displayUsername.trim() || undefined
     };
 
     try {
@@ -254,6 +257,28 @@ const EditSnippetModal: React.FC<EditSnippetModalProps> = ({
                   maxLength={100}
                 />
                 <p className="text-sm text-light-text-secondary dark:text-dark-text-secondary mt-1">{title.length}/100 characters</p>
+              </div>
+
+              {/* Display Username input */}
+              <div>
+                <label htmlFor="displayUsername" className="block text-sm font-medium text-light-text dark:text-dark-text">
+                  Display Username (optional)
+                </label>
+                <input
+                  type="text"
+                  id="displayUsername"
+                  value={displayUsername}
+                  onChange={(e) => {
+                    setDisplayUsername(e.target.value);
+                    setHasUnsavedChanges(true);
+                  }}
+                  className="mt-1 block w-full rounded-md bg-light-surface dark:bg-dark-surface 
+                            text-light-text dark:text-dark-text p-2 text-sm
+                            border border-light-border dark:border-dark-border
+                            focus:ring-2 focus:ring-light-primary dark:focus:ring-dark-primary 
+                            focus:border-light-primary dark:focus:border-dark-primary"
+                  placeholder="Leave empty to use your account username"
+                />
               </div>
 
               {/* Description input */}
