@@ -247,12 +247,12 @@ class SnippetRepository {
     }
   }
 
-  create({ title, description, categories = [], fragments = [], userId, isPublic = 0, displayUsername = null }) {
+  create({ title, description, categories = [], fragments = [], userId, isPublic = 0, display_username = null }) {
     this.#initializeStatements();
     try {
       const db = getDb();
       return db.transaction(() => {
-        const insertResult = this.insertSnippetStmt.run(title, description, userId, isPublic ? 1 : 0, displayUsername || null);
+        const insertResult = this.insertSnippetStmt.run(title, description, userId, isPublic ? 1 : 0, display_username || null);
         const snippetId = insertResult.lastInsertRowid;
         
         fragments.forEach((fragment, index) => {
@@ -282,12 +282,12 @@ class SnippetRepository {
     }
   }
 
-  update(id, { title, description, categories = [], fragments = [], isPublic = 0, displayUsername = null }, userId) {
+  update(id, { title, description, categories = [], fragments = [], isPublic = 0, display_username = null }, userId) {
     this.#initializeStatements();
     try {
       const db = getDb();
       return db.transaction(() => {
-        this.updateSnippetStmt.run(title, description, isPublic ? 1 : 0, displayUsername, id, userId);
+        this.updateSnippetStmt.run(title, description, isPublic ? 1 : 0, display_username, id, userId);
         
         this.deleteFragmentsStmt.run(id, userId);
         fragments.forEach((fragment, index) => {
