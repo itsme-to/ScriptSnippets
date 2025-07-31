@@ -72,7 +72,7 @@ class SnippetRepository {
           user_id,
           is_public,
           display_username
-        ) VALUES (?, ?, datetime('now', 'utc'),NULL, ?, ?)
+        ) VALUES (?, ?, datetime('now', 'utc'),NULL, ?, ?, ?)
       `);
 
       this.insertFragmentStmt = db.prepare(`
@@ -248,7 +248,7 @@ class SnippetRepository {
     try {
       const db = getDb();
       return db.transaction(() => {
-        const insertResult = this.insertSnippetStmt.run(title, description, userId, isPublic ? 1 : 0, displayUsername);
+        const insertResult = this.insertSnippetStmt.run(title, description, userId, isPublic ? 1 : 0, displayUsername || null);
         const snippetId = insertResult.lastInsertRowid;
         
         fragments.forEach((fragment, index) => {
